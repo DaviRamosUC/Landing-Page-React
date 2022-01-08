@@ -65,18 +65,14 @@ describe('Heading', () => {
   });
 
   it('should render correct font-size when using mobile', () => {
-    const { debug } = renderTheme(<Heading size="small">texto</Heading>);
+    renderTheme(<Heading size="huge">texto</Heading>);
     const heading = screen.getByRole('heading', { name: 'texto' });
 
     // Existe um bug do jest aqui
     // Esta versão não consegue identificar o media query correto
-    // expect(screen.getByRole('heading', { name: 'texto' })).toHaveStyleRule(
-    //   'font-size',
-    //   theme.font.sizes.big,
-    //   {
-    //     media: theme.media.lteMedium,
-    //   },
-    // );
+    expect(heading).toHaveStyleRule('font-size', theme.font.sizes.xlarge, {
+      media: theme.media.lteMedium,
+    });
   });
 
   it('should render with uppercase letters', () => {
